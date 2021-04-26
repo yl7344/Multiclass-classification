@@ -57,8 +57,8 @@ def train_BigNet(total_iter, epochs):
     return net,train_loss_his,test_loss_his
 
 def train_smallNet(total_iter, epochs, numbers):
-    # [3, 4, 6, 3] basic block size, with up to 512 chanels.
-    nets = [ResNet1.ResNet(ResNet.BasicBlock, [2, 2, 2, 2],100).to(device) for i in range(numbers)]
+    # [3, 4, 6, 3] basic block size, with up to 128 chanels.
+    nets = [ResNet.ResNet(ResNet.BasicBlock, [1, 1, 1, 1],100).to(device) for i in range(numbers)]
 
     # Load Whole Dataset
     trainDataLoader, testDataLoader =  data.loadData(250)
@@ -69,6 +69,8 @@ def train_smallNet(total_iter, epochs, numbers):
     train_loss_his = [[] for i in range(numbers)]
     test_loss_his = [[] for i in range(numbers)]
     for i in range(numbers):
-        train_loss_his,test_loss_his = train(nets[i],trainDataLoader,testDataLoader,loss,optimizer[i],total_iter,epochs)
+        #if i != 0:
+        #    nets[i].load_state_dict(nets[i-1].state_dict())
+        train_loss_his[i],test_loss_his[i] = train(nets[i],trainDataLoader,testDataLoader,loss,optimizer[i],total_iter,epochs)
 
     return nets, train_loss_his,test_loss_his

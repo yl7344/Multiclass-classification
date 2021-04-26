@@ -22,3 +22,30 @@ def evaluate(model,dataloader):
   acc = rights/(rights+wrongs)
   #return the accuracy
   return acc
+
+def evaluate_2(models,dataloader):
+  acc = 0.0
+  rights = 0
+  wrongs = 0
+  for i, test_examples in enumerate(dataloader, 0):
+    #predicting using the nets
+    inputs, labels = test_examples
+    for j,m in enumerate(models):
+        if j == 0:
+            predicted_outputs = nets[j](inputs.float().cuda())
+        else:
+            predicted_outputs += nets[j](inputs.float().cuda())
+    
+    #Selecting the label which has the largest outputs
+    outputs = torch.argmax(predicted_outputs, 1)
+
+    #Counting successfully and unsuccessfully predicted cases
+    for j, n in enumerate(outputs):
+      if n == labels[j]:
+        rights += 1
+      else:
+        wrongs += 1
+  #calculate accuracy with the cases we recorded
+  acc = rights/(rights+wrongs)
+  #return the accuracy
+  return acc
