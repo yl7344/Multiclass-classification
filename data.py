@@ -108,7 +108,7 @@ def loadData_byBigClass(batch_size):
     return trainloader, testloader
 
 
-def loadData_minClass(batch_size,class_num):
+def loadData_minClass1(batch_size,class_num):
     bigClass = 	[['beaver', 'dolphin', 'otter', 'seal', 'whale'],
 	              ['aquarium_fish', 'flatfish', 'ray', 'shark', 'trout'],
 	              ['orchid', 'poppy', 'rose', 'sunflower', 'tulip'],
@@ -153,7 +153,9 @@ def loadData_minClass(batch_size,class_num):
                 train_data_dict.append(train_data_labels[i])
             train_data_inputs_mini.append(train_data[i][0])
             train_data_labels_mini.append(train_data_dict.index(train_data_labels[i]))
-    
+        #else:
+            #train_data_inputs_mini.append(train_data[i][0])
+            #train_data_labels_mini.append(5)
     train_data_inputs_mini = torch.stack((train_data_inputs_mini)).float()
     train_data_labels_mini = torch.tensor(train_data_labels_mini,dtype=torch.long)
 
@@ -178,6 +180,9 @@ def loadData_minClass(batch_size,class_num):
                 test_data_dict.append(train_data_dict[i])
             test_data_inputs_mini.append(test_data[i][0])
             test_data_labels_mini.append(train_data_dict.index(test_data_labels[i]))
+        #else:
+            #test_data_inputs_mini.append(test_data[i][0])
+            #test_data_labels_mini.append(5)
     
     test_data_inputs_mini = torch.stack((test_data_inputs_mini)).float()
     test_data_labels_mini = torch.tensor(test_data_labels_mini,dtype=torch.long)

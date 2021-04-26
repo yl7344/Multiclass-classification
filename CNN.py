@@ -31,7 +31,7 @@ class CNN(nn.Module):
         #out = self.pool(self.relu(self.conv3(out)))
         #print(out.shape)
         out = out.view(-1,3*3*256)
-        out = self.softmax(self.fc1(out))
+        out = self.fc1(out)
         #out = self.fc2(out)
         return out
 
