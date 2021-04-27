@@ -1,6 +1,8 @@
 # Multiclass-classification
-├── notebooks // notebooks on how to use the .py file <br/>
-├── pdf  // print view of notebook outputs and project report <br/>
+├── notebooks  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── notebooks on how to use the .py file <br/>
+├── pdf
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── print view of notebook outputs and project report <br/>
 ├── CNN.py <br/>
 ├── ResNet.py <br/>
 ├── ResNet1.py <br/>
